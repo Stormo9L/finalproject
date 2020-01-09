@@ -23,7 +23,7 @@ class Catapult():
         self.turt.goto(self.location)
         self.turtlecolor = turtlecolor
         #self.turt.color(self.turtlecolor, self.turtlecolor)
-        self.turt.color('purple', 'purple')
+        
         self.turt.stamp()
         self.mypowerup = None
         self.destroyTerrainmod = False
@@ -87,7 +87,7 @@ class Catapult():
                 self.location = newpos
                 powerup = self.isHitPowerup()
                 if not powerup == None:
-                    print('it hits')
+                    #print('it hits')
                     self.gamestate.applyPowerup(powerup)
             else:
                 break
@@ -111,7 +111,7 @@ class Catapult():
         self.gamestate.switchplayer()
 
     def moveRight(self):
-        print(self.location)
+        #print(self.location)
         if self.movementPoints == 0:
             return
         if self.location[0] + 50 >= 999:
@@ -132,7 +132,7 @@ class Catapult():
         self.gamestate.writeMPinfo()
 
     def moveLeft(self):
-        print(self.location)
+        #print(self.location)
         if self.movementPoints == 0:
             return
         if self.location[0] - 50 <= 0:
@@ -160,16 +160,16 @@ class Catapult():
             otherplayer = self.gamestate.player2
         else:
             otherplayer = self.gamestate.player1
-        print("Current player" ,self.gamestate.currentPlayer.name)
-        print('Other player', otherplayer.name)
-        zoneofEffectMinX = otherplayer.location[0] - 120
-        zoneofEffectMaxX = otherplayer.location[0] + 120
-        ZoneofEffectMinY = otherplayer.location[1] -130
-        ZoneofEffectMaxY = otherplayer.location[1] +130
-        print(zoneofEffectMinX, zoneofEffectMaxX)
-        print(ZoneofEffectMinY, ZoneofEffectMaxY)
-        print(self.location[0])
-        print(self.location[1])
+        #print("Current player" ,self.gamestate.currentPlayer.name)
+        #print('Other player', otherplayer.name)
+        zoneofEffectMinX = otherplayer.location[0] - 60
+        zoneofEffectMaxX = otherplayer.location[0] + 60
+        ZoneofEffectMinY = otherplayer.location[1] -60
+        ZoneofEffectMaxY = otherplayer.location[1] +60
+        #print(zoneofEffectMinX, zoneofEffectMaxX)
+        #print(ZoneofEffectMinY, ZoneofEffectMaxY)
+        #print(self.location[0])
+        #print(self.location[1])
         if (self.location[0] > zoneofEffectMinX and self.location[0] < zoneofEffectMaxX) and (self.location[1] > ZoneofEffectMinY and self.location[1] < ZoneofEffectMaxY):
             return True
         else: 
@@ -243,7 +243,7 @@ class Catapult():
             return
         elif self.mypowerup.type == 'jump':
             self.vy *= 2
-            print(self.vy)
+            #print(self.vy)
         elif self.mypowerup.type == 'bomb':
             self.destroyTerrainmod = True
         self.mypowerup = None

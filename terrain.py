@@ -13,15 +13,9 @@ def definesize():
     screensize(1000,1000)
     setworldcoordinates(0,0,1000,1000)
 
-def testdefinesize():
-    '''checks to see if the function works by going to 0,0 and
-    drawing a line'''
-    definesize()
-    goto(0,0)
-    left(45)
-    forward(500)
 
-def setuparray():
+
+def setuparray(): #outdated
     '''makes an array filled with 1000 arrays
     returns the array
     '''
@@ -30,13 +24,13 @@ def setuparray():
         array.append([])
     return array
 
-def testsetuparray():
+def testsetuparray(): #outdated
     '''tests the function by printing the array'''
     array = setuparray()
     for count,i in enumerate(array):
         print('Array Number: ' ,count)
     
-def fillarrayrandom(array):
+def fillarrayrandom(array): #outdated
     '''randomly fills the 2D array. Each subarray has 1000 integers, randomly a zero or one'''
     import random
     for subarray in array:
@@ -45,13 +39,9 @@ def fillarrayrandom(array):
             subarray.append(number)
     return array
 
-def testfillarrayrandom():
-    '''prints the array for testing'''
-    array = setuparray()
-    newarray = fillarrayrandom(array)
-    print(newarray)
 
-def arraytopixels(array):
+
+def arraytopixels(array): #outdated
     '''takes a 2D array of zeroes and ones and fills a turtle screen based off
     the values: 0 = white, 1 = black'''
     up()
@@ -71,11 +61,6 @@ def arraytopixels(array):
                 forward(1)
     
 
-def testarraytopixels():
-    definesize()
-    array = setuparray()
-    newarray = fillarrayrandom(array)
-    arraytopixels(newarray)
 
 
 #alright new idea
@@ -92,7 +77,7 @@ def makeplateu(heightmap, lasty):
         heightmap.append(lasty)
     return heightmap, lasty
 
-def makehill(heightmap, lasty):
+def makehill(heightmap, lasty):  #outdated
     '''generates a hill (for now a pyramid)
     width of hill is between 80 and 150
     height of hill is between 60 and 100'''
@@ -108,7 +93,7 @@ def makehill(heightmap, lasty):
         heightmap.append(currenty)
     return heightmap, currenty
     
-def makevalley(heightmap, lasty):
+def makevalley(heightmap, lasty): #outdated
     '''generates a valley (for now a pyramid)
     width of valley is between 80 and 150
     height of valley is between 60 and 100'''
@@ -131,8 +116,7 @@ def makeheightmap():
         heightmap, lasty = random.choice(terrains)(heightmap, lasty)
     return heightmap
 
-def testmakeheightmap():
-    print(makeheightmap())
+
 
 #issues found when running testmakeheightmap:
 
@@ -147,8 +131,7 @@ def makehillmap():
         heightmap, lasty = makehill(heightmap, lasty)
     return heightmap
 
-def testmakehillmap():
-    print(makehillmap())
+
 
 def generateTerrain(heightmap):
     terraindrawer.clear()
@@ -168,13 +151,6 @@ def generateTerrain(heightmap):
         
     terraindrawer.hideturtle()
 
-def testgenerateTerrain():
-    tracer(0,0)
-    hmap = makeheightmap()
-    definesize()
-    generateTerrain(hmap)
-    update()
-    mainloop()
 
 def screenSpaceToHillSpace(point, hillStart, width, height):
     xp = point[0] - hillStart[0] - (width / 2)
@@ -288,6 +264,7 @@ def newmakevalley(heightmap, lasty):
 
 
 def makeheightmapV2():
+    '''new terrain generation logic'''
     lasty = 400
     heightmap = []
     terrains = [newmakehill, makeplateu, newmakevalley]
@@ -296,12 +273,13 @@ def makeheightmapV2():
     return heightmap
 
 def destroyTerrainAt(hmap, point):
-    widthofHole = random.randint(30,60)
+    '''Destroys terrain at a given point and redraws the terrain'''
+    widthofHole = random.randint(60,100)
     startingX = point[0]
     #print(hmap)
     for i in range(widthofHole):
         #print(hmap[i + startingX])
-        hmap[i + startingX] -= random.randint(30,60)
+        hmap[i + int(startingX)] -= random.randint(60,100)
         #print(hmap[i + startingX])
         #print('-----------------------')
     #print(hmap)

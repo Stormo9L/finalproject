@@ -21,7 +21,7 @@ class Powerup():
         self.drawer.hideturtle()
         self.drawer.up()
         self.drawer.goto(self.xCord, self.yCord)
-        self.drawer.write(self.type, False, 'center')
+        self.drawer.write(self.type, False, 'center', ('Terminal', 8, 'normal'))
 
     def destroy(self):
         self.drawer.clear()

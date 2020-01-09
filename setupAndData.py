@@ -69,8 +69,8 @@ class Gamestate():
         self.setbuttons()
         self.writeMPinfo()
         #print(self.currentPlayer.name)
-        sloo = randint(1,4)
-        if sloo == 4:
+        sloo = randint(1,3)
+        if sloo == 3:
             self.PowerupList.append(powerups.Powerup(self))
 
     def setbuttons(self):
@@ -90,7 +90,7 @@ class Gamestate():
         onkey(self.currentPlayer.faceLeft, 'n')
         onkey(self.currentPlayer.poweruphandler, 'j')
 
-    def endgame(self):
+    def endgame(self): #outdated
         print(self.currentPlayer.name, ' wins!',)
 
     def writeLivesinfo(self):
@@ -132,9 +132,13 @@ class Gamestate():
         self.PowerupList.remove(powerup)
 
     def doWinScreen(self):
+        resetscreen()
         clearscreen()
         bob = Turtle()
-        bob.write('{0} Wins!'.format(self.currentPlayer.name))
+        bob.up()
+        bob.hideturtle()
+        bob.goto(500,500)
+        bob.write('{0} Wins!\nClick to play again!'.format(self.currentPlayer.name), False, 'center', ('Terminal', 16,'normal'))
         onscreenclick(self.endTutorial)
 
     def doTitleScreen(self):
@@ -216,6 +220,6 @@ class Gamestate():
         if (not self.endTutorialDisplay):
             onscreenclick(None)
             self.textdrawer.clear()
-            self.textdrawer.write("Controls:\n'A' to move left\n'D' to move right\n'1-5' determine the power of your throw\nand 'F' fires!\nWhen you grab a powerup, press 'J' to activate it!\n\nClick anywhere to continue", False, 'center', ('Terminal', 16,'normal'))
+            self.textdrawer.write("Controls:\n'A' to move left\n'D' to move right\n'1-5' determine the power of your throw\nand 'F' fires!\nWhen you hit a powerup with your stone, press 'J' to activate it!\n\nClick anywhere to continue", False, 'center', ('Terminal', 10,'normal'))
             onscreenclick(self.endTutorial)
     
